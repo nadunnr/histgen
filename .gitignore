@@ -1,2 +1,6 @@
 token.env
 CLAM
+__pycache__/
+*.pyc
+*.pth
+*.pt
