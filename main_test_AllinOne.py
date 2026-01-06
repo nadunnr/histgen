@@ -7,6 +7,7 @@ from modules.metrics import compute_scores
 from modules.tester_AllinOne import Tester
 from modules.loss import compute_loss
 from models.histgen_model import HistGenModel
+import copy
 
 def parse_agrs():
     parser = argparse.ArgumentParser()
@@ -40,6 +41,7 @@ def parse_agrs():
     parser.add_argument('--pad_idx', type=int, default=0, help='the index of <pad>.')
     parser.add_argument('--use_bn', type=int, default=0, help='whether to use batch normalization.')
     parser.add_argument('--drop_prob_lm', type=float, default=0.5, help='the dropout rate of the output layer.')
+    parser.add_argument('--prototype_num', type=int, default=512, help='number of prototypes')
     # for Cross-modal context module
     parser.add_argument('--topk', type=int, default=32, help='the number of k.')
     parser.add_argument('--cmm_size', type=int, default=2048, help='the numebr of cmm size.')
@@ -100,7 +102,12 @@ def main():
     np.random.seed(args.seed)
     
     # tokenizer = Tokenizer(args)
-    tokenizer = MedicalReportTokenizer(args)
+
+    # for full dim model creatin even the test size is smaller
+    args_for_vocab = copy.deepcopy(args)
+    args_for_vocab.ann_path = "/home/nadun/wd/datasets/histgen_data/annotation712_update.json"
+
+    tokenizer = MedicalReportTokenizer(args_for_vocab)
     test_dataloader = R2DataLoader(args, tokenizer, split='test', shuffle=False)
     model = HistGenModel(args, tokenizer)
 

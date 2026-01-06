@@ -1,12 +1,11 @@
 model='histgen'
 max_length=100
-epochs=40
+epochs=1
 region_size=96
 prototype_num=512
 
 python main_test_AllinOne.py \
-    --image_dir /home/nadun/wd/datasets/histgen_data/dinov2_vitl \
-    --ann_path /home/nadun/wd/datasets/histgen_data/annotation_partial.json \
+    --image_dir /home/nadun/wd/datasets/histgen_data/DINOv2_Features \
     --dataset_name wsi_report \
     --model_name $model \
     --max_seq_length $max_length \
@@ -24,5 +23,7 @@ python main_test_AllinOne.py \
     --gamma 0.8 \
     --seed 42 \
     --log_period 1000 \
-    --load /path/to/checkpoint \
-    --beam_size 3
+    --load /home/nadun/wd/nadun/histgen/histgen_ckpt/model_best.pth \
+    --beam_size 3 \
+    --ann_path /home/nadun/wd/datasets/histgen_data/annotation_partial.json \
+    # --ann_path /home/nadun/wd/nadun/histgen/dataset_annotations.json \

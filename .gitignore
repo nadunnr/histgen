@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 *.pth
 *.pt
+test_results/
+records/

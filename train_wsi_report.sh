@@ -5,7 +5,7 @@ region_size=96
 prototype_num=512
 
 python main_train_AllinOne.py \
-    --image_dir /home/nadun/wd/datasets/histgen_data/dinov2_vitl \
+    --image_dir /home/nadun/wd/datasets/histgen_data/DINOv2_Features \
     --ann_path /home/nadun/wd/nadun/histgen/dataset_annotations.json \
     --dataset_name wsi_report \
     --model_name $model \
